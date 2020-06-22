@@ -42,19 +42,8 @@ su.invoice.module.failUrl=Ссылка_при_неудачной_оплате
 public class CheckoutController {
     @Autowired
     OrderRepo orderRepo;
-
     @Autowired
     InvoicePaymentManager paymentManager;
-
-    @GetMapping("/order/{id}/payment")
-    public List<InvoicePayment> getPayments(@PathVariable Integer id) {
-        Order order = orderRepo.findFirstById(id);
-        if(order == null) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
-        }
-
-        return paymentManager.getPaymentsByCustomParameters("order", String.valueOf(id));
-    }
 
     @PostMapping("/order/{id}/payment")
     public Map<String, Object> createPayment(@PathVariable Integer id) {
