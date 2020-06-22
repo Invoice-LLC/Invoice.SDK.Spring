@@ -6,7 +6,7 @@
 
 <h3>Установка</h3>
 
-1.Скачайте [библиотеку](https://invoice.su)
+1.Скачайте [библиотеку](https://github.com/Invoice-LLC/Invoice.SDK.Spring/raw/master/invoice.jar)
 
 2.**Maven**<br>
 Добавьте зависимость в pom.xml
@@ -37,6 +37,7 @@ su.invoice.module.failUrl=Ссылка_при_неудачной_оплате
 
 <h3>Пример использования:</h3>
 ```java
+
 @RestController()
 public class CheckoutController {
     @Autowired
