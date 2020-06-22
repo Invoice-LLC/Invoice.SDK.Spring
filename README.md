@@ -37,43 +37,43 @@ su.invoice.module.failUrl=Ссылка_при_неудачной_оплате
 
 <h3>Пример использования:</h3>
 ```java
-    @Autowired
-    OrderRepo orderRepo;
-    @Autowired
-    InvoicePaymentManager paymentManager;
+@Autowired
+OrderRepo orderRepo;
+@Autowired
+InvoicePaymentManager paymentManager;
 
-    @PostMapping("/order/{id}/payment")
-    public Map<String, Object> createPayment(@PathVariable Integer id) {
-        Order order = orderRepo.findFirstById(id);
+@PostMapping("/order/{id}/payment")
+public Map<String, Object> createPayment(@PathVariable Integer id) {
+    Order order = orderRepo.findFirstById(id);
 
-        if(order == null) {
-            throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
-        }
-
-        Map<String, String> customParameters = new HashMap<>();
-        customParameters.put("mail", order.mail);
-        customParameters.put("order", String.valueOf(id));
-
-        InvoicePayment payment = paymentManager.createPayment(order.amount, "Тестовый заказ", new ArrayList<>(), customParameters);
-
-        Map<String,Object> paymentInfo = new HashMap<>();
-        paymentInfo.put("payment_url", payment.getPaymentUrl());
-        paymentInfo.put("qr_code", payment.getQr());
-        paymentInfo.put("parameters", customParameters);
-
-        return paymentInfo;
+    if(order == null) {
+        throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/order")
-    public String createOrder(@RequestBody CreateOrderForm form) {
-        if(form.amount <= 0) {
-            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST);
-        }
-        Order order = new Order();
-        order.amount = form.amount;
-        order.mail = form.mail;
+    Map<String, String> customParameters = new HashMap<>();
+    customParameters.put("mail", order.mail);
+    customParameters.put("order", String.valueOf(id));
 
-        orderRepo.save(order);
-        return String.valueOf(order.id);
+    InvoicePayment payment = paymentManager.createPayment(order.amount, "Тестовый заказ", new ArrayList<>(), customParameters);
+
+    Map<String,Object> paymentInfo = new HashMap<>();
+    paymentInfo.put("payment_url", payment.getPaymentUrl());
+    paymentInfo.put("qr_code", payment.getQr());
+    paymentInfo.put("parameters", customParameters);
+
+    return paymentInfo;
+}
+
+@PostMapping("/order")
+public String createOrder(@RequestBody CreateOrderForm form) {
+    if(form.amount <= 0) {
+        throw new HttpClientErrorException(HttpStatus.BAD_REQUEST);
     }
+    Order order = new Order();
+    order.amount = form.amount;
+    order.mail = form.mail;
+
+    orderRepo.save(order);
+    return String.valueOf(order.id);
+}
 ```
