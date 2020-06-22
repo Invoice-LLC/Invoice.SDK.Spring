@@ -37,6 +37,8 @@ su.invoice.module.failUrl=Ссылка_при_неудачной_оплате
 
 <h3>Пример создания платеж:</h3>
 ```java
+
+
 @Autowired
 InvoicePaymentManager paymentManager;
 public void createPayment() {
@@ -46,4 +48,6 @@ public void createPayment() {
 
     InvoicePayment payment = paymentManager.createPayment(order.amount, "Тестовый заказ", new ArrayList<>(), customParameters);
 }
+
+
 ```
