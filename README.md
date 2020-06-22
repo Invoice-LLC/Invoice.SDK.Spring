@@ -37,9 +37,6 @@ su.invoice.module.failUrl=Ссылка_при_неудачной_оплате
 
 <h3>Пример использования:</h3>
 ```java
-
-@RestController()
-public class CheckoutController {
     @Autowired
     OrderRepo orderRepo;
     @Autowired
@@ -79,6 +76,4 @@ public class CheckoutController {
         orderRepo.save(order);
         return String.valueOf(order.id);
     }
-}
-
 ```
