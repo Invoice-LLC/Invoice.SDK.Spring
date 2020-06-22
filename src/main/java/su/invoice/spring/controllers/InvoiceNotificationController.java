@@ -23,6 +23,7 @@ public class InvoiceNotificationController {
         if(!notification.checkSignature(properties.getApiKey())) {
             throw new HttpClientErrorException(HttpStatus.FORBIDDEN, "Wrong signature!");
         }
+
         InvoicePayment payment = invoicePaymentRepo.findFirstById(notification.id);
         if(payment == null) {
             throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
