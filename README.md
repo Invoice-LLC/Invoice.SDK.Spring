@@ -1,7 +1,7 @@
 <h1>Invoice Payment Module</h1>
 
 <h3>Требования</h3>
-1. Spring Boot
+1. Spring Boot<br>
 2. Spring Data JPA
 
 <h3>Установка</h3>
@@ -35,7 +35,5 @@ su.invoice.module.failUrl=Ссылка_при_неудачной_оплате
 ```
 5.В личном кабинете Invoice(Настройки->Уведомления->Добавить) добавьте уведомление с типом WebHook и адресом, который вы задали в конфиге(например: %url%/invoice/notification)
 
-<h3>Пример</h3>
-```java
+<h3>Пример использования в папке: Invoice.Spring.Example</h3>
 
-```
