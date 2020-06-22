@@ -36,12 +36,4 @@ su.invoice.module.failUrl=Ссылка_при_неудачной_оплате
 5.В личном кабинете Invoice(Настройки->Уведомления->Добавить) добавьте уведомление с типом WebHook и адресом, который вы задали в конфиге(например: %url%/invoice/notification)
 
 <h3>Пример</h3>
-```java
-@Component
-public class Payments {
-    @Autowired
-    InvoicePaymentManager paymentManager;
 
-
-}
-```
